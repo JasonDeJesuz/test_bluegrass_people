@@ -1,0 +1,15 @@
+/Users/jasondejesuz/_Development/_Projects/Personal/Interviews/test_bluegrass_people/Bluegrass/Bluegrass.Shared/bin/Debug/net6.0/Bluegrass.Shared.deps.json
+/Users/jasondejesuz/_Development/_Projects/Personal/Interviews/test_bluegrass_people/Bluegrass/Bluegrass.Shared/bin/Debug/net6.0/Bluegrass.Shared.dll
+/Users/jasondejesuz/_Development/_Projects/Personal/Interviews/test_bluegrass_people/Bluegrass/Bluegrass.Shared/bin/Debug/net6.0/ref/Bluegrass.Shared.dll
+/Users/jasondejesuz/_Development/_Projects/Personal/Interviews/test_bluegrass_people/Bluegrass/Bluegrass.Shared/bin/Debug/net6.0/Bluegrass.Shared.pdb
+/Users/jasondejesuz/_Development/_Projects/Personal/Interviews/test_bluegrass_people/Bluegrass/Bluegrass.Shared/bin/Debug/net6.0/Bluegrass.Data.dll
+/Users/jasondejesuz/_Development/_Projects/Personal/Interviews/test_bluegrass_people/Bluegrass/Bluegrass.Shared/bin/Debug/net6.0/Bluegrass.Data.pdb
+/Users/jasondejesuz/_Development/_Projects/Personal/Interviews/test_bluegrass_people/Bluegrass/Bluegrass.Shared/obj/Debug/net6.0/Bluegrass.Shared.csproj.AssemblyReference.cache
+/Users/jasondejesuz/_Development/_Projects/Personal/Interviews/test_bluegrass_people/Bluegrass/Bluegrass.Shared/obj/Debug/net6.0/Bluegrass.Shared.GeneratedMSBuildEditorConfig.editorconfig
+/Users/jasondejesuz/_Development/_Projects/Personal/Interviews/test_bluegrass_people/Bluegrass/Bluegrass.Shared/obj/Debug/net6.0/Bluegrass.Shared.AssemblyInfoInputs.cache
+/Users/jasondejesuz/_Development/_Projects/Personal/Interviews/test_bluegrass_people/Bluegrass/Bluegrass.Shared/obj/Debug/net6.0/Bluegrass.Shared.AssemblyInfo.cs
+/Users/jasondejesuz/_Development/_Projects/Personal/Interviews/test_bluegrass_people/Bluegrass/Bluegrass.Shared/obj/Debug/net6.0/Bluegrass.Shared.csproj.CoreCompileInputs.cache
+/Users/jasondejesuz/_Development/_Projects/Personal/Interviews/test_bluegrass_people/Bluegrass/Bluegrass.Shared/obj/Debug/net6.0/Bluegrass.Shared.csproj.CopyComplete
+/Users/jasondejesuz/_Development/_Projects/Personal/Interviews/test_bluegrass_people/Bluegrass/Bluegrass.Shared/obj/Debug/net6.0/Bluegrass.Shared.dll
+/Users/jasondejesuz/_Development/_Projects/Personal/Interviews/test_bluegrass_people/Bluegrass/Bluegrass.Shared/obj/Debug/net6.0/ref/Bluegrass.Shared.dll
+/Users/jasondejesuz/_Development/_Projects/Personal/Interviews/test_bluegrass_people/Bluegrass/Bluegrass.Shared/obj/Debug/net6.0/Bluegrass.Shared.pdb
