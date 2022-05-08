@@ -11,12 +11,12 @@ namespace Bluegrass.Data
         public static IServiceCollection RegisterDataServices(this IServiceCollection services, IConfiguration configuration, string? connectionString = null)
         {
             // Using a in memory database
-            services.AddDbContext<BluegrassContext>(o => o.UseInMemoryDatabase("Bluegrass"));
-            
+            //services.AddDbContext<BluegrassContext>(o => o.UseInMemoryDatabase("Bluegrass"));
+
             // Using SQL Server
-            // services.AddDbContext<BluegrassContext>(o =>
-            //     o.UseSqlServer(configuration.GetConnectionString("BlueGrassContext")));
-            
+            services.AddDbContext<BluegrassContext>(o =>
+                o.UseSqlServer(configuration.GetConnectionString("BlueGrassContext")));
+
             services.AddTransient<IBluegrassContextService, BluegrassContextService>();
             
             return services;
