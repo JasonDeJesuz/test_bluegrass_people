@@ -15,4 +15,10 @@
       <ProjectReference Include="..\Bluegrass.Data\Bluegrass.Data.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <None Remove="DTO\Change\" />
+    </ItemGroup>
+    <ItemGroup>
+      <Folder Include="DTO\Change\" />
+    </ItemGroup>
 </Project>

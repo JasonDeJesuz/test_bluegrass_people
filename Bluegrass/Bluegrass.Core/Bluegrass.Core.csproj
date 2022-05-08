@@ -17,4 +17,10 @@
       <ProjectReference Include="..\Bluegrass.Shared\Bluegrass.Shared.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <None Remove="Services\ChangeService\" />
+    </ItemGroup>
+    <ItemGroup>
+      <Folder Include="Services\ChangeService\" />
+    </ItemGroup>
 </Project>
