@@ -1,4 +1,5 @@
 using Bluegrass.Data.Context;
+using Bluegrass.Data.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -15,6 +16,8 @@ namespace Bluegrass.Data
             // Using SQL Server
             // services.AddDbContext<BluegrassContext>(o =>
             //     o.UseSqlServer(configuration.GetConnectionString("BlueGrassContext")));
+            
+            services.AddTransient<IBluegrassContextService, BluegrassContextService>();
             
             return services;
         }

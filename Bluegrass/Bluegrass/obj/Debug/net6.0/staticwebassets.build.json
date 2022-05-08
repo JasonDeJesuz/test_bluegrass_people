@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "ByTYfY+2lDNzECQiesl7gEbLtuWD46hvcdF89Pr/LIk=",
+  "Hash": "SswGJFIOb3aL0pJYCRA/ktYxwSnUBf4TqDWEGAWnfeE=",
   "Source": "Bluegrass",
   "BasePath": "_content/Bluegrass",
   "Mode": "Default",
@@ -11,10 +11,10 @@
       "Version": 2,
       "Source": "Bluegrass.Core",
       "GetPublishAssetsTargets": "ComputeReferencedStaticWebAssetsPublishManifest;GetCurrentProjectPublishStaticWebAssetItems",
-      "AdditionalPublishProperties": "Configuration=Debug;Platform=AnyCPU",
+      "AdditionalPublishProperties": "",
       "AdditionalPublishPropertiesToRemove": "WebPublishProfileFile;TargetFramework;RuntimeIdentifier",
       "GetBuildAssetsTargets": "GetCurrentProjectBuildStaticWebAssetItems",
-      "AdditionalBuildProperties": "Configuration=Debug;Platform=AnyCPU",
+      "AdditionalBuildProperties": "",
       "AdditionalBuildPropertiesToRemove": "WebPublishProfileFile;TargetFramework;RuntimeIdentifier"
     }
   ],

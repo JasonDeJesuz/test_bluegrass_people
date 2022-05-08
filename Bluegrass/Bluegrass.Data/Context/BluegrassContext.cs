@@ -18,7 +18,7 @@ namespace Bluegrass.Data.Context
         {
             // TODO: Add Encryption Option to the constructors
         }
-        
+
         #endregion
         
         #region On Model Creation
