@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Bluegrass.Shared.DTO.Person;
 
-namespace Bluegrass.Core.Services
+namespace Bluegrass.Core.Services.Person
 {
     public interface IPersonService
     {

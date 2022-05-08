@@ -9,7 +9,7 @@ using Bluegrass.Shared.DTO.Person;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
-namespace Bluegrass.Core.Services
+namespace Bluegrass.Core.Services.Person
 {
     public class PersonService : IPersonService
     {
@@ -33,8 +33,8 @@ namespace Bluegrass.Core.Services
         {
             try
             {
-                // var allPersons = await _context.Persons.Include(x => x.Contact).Include(x => x.Address)
-                //     .Include(x => x.ProfilePicture).Select(x => _mapper.Map<PersonDTO>(x)).ToListAsync();
+                var allPersonsIncludingRelationships = await _context.Persons.Include(x => x.Contact).Include(x => x.Address)
+                    .Include(x => x.ProfilePicture).Select(x => _mapper.Map<PersonDTO>(x)).ToListAsync();
 
                 var allPersons = await _context.Persons.Select(x => _mapper.Map<PersonDTO>(x)).ToListAsync();
 

@@ -1,5 +1,5 @@
 using System;
-using Bluegrass.Core.Services;
+using Bluegrass.Core.Services.Person;
 using Bluegrass.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;

@@ -2,12 +2,13 @@ using Bluegrass.Shared.DTO.Person;
 using AutoMapper;
 using Bluegrass.Data.Data.Models;
 
-namespace Bluegrass.Shared.Profiles
+namespace Bluegrass.Profiles
 {
     public class PersonProfile : Profile
     {
         public PersonProfile()
         {
+            CreateMap<Person, PersonDTO>().ReverseMap();
             CreateMap<Person, PersonDTO>()
                 .ForMember(
                     dest => dest.Address,
@@ -20,8 +21,7 @@ namespace Bluegrass.Shared.Profiles
                 .ForMember(
                     dest => dest.ProfilePicture,
                     opt => opt.MapFrom(src => src.ProfilePicture)
-                );
-            CreateMap<PersonDTO, Person>();
+                ).ReverseMap();
         }
     }
 }

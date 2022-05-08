@@ -2,7 +2,7 @@ using AutoMapper;
 using Bluegrass.Data.Data.Models;
 using Bluegrass.Shared.DTO.Contact;
 
-namespace Bluegrass.Shared.Profiles
+namespace Bluegrass.Profiles
 {
     public class ContactProfile : Profile
     {

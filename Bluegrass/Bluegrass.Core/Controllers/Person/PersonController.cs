@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Bluegrass.Core.Services;
+using Bluegrass.Core.Services.Person;
 using Bluegrass.Shared.DTO.Generic;
 using Bluegrass.Shared.DTO.Person;
 using Microsoft.AspNetCore.Http;
