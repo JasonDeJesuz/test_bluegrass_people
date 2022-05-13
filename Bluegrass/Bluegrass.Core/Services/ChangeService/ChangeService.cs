@@ -24,6 +24,7 @@ namespace Bluegrass.Core.Services.ChangeService
                 // we need to take the old data, and then compare with the new data and add it do the list of changes
                 var variances = new List<VarianceDTO>();
                 // string[] changesToDetect = { "Name", "Surname", "Gender", "Country", "City", "Email", "Mobile" };
+                string[] excludedList = {"DateModified", "DateCreated", "Id"};
 
                 var personVariances = originalData.Compare(newData);
                 var addressVariances = originalData.Address.Compare(newData.Address);
@@ -33,7 +34,9 @@ namespace Bluegrass.Core.Services.ChangeService
                 variances.AddRange(addressVariances);
                 variances.AddRange(contactVariances);
 
-                return variances;
+                var cleanedData = variances.Where(x => !excludedList.Contains(x.Prop) && !x.valA.Equals(x.valB)).ToList();
+
+                return cleanedData;
             }
             catch (Exception ex)
             {
