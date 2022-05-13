@@ -138,7 +138,29 @@
               <h4 class="mb-2">Adventure starts here 🚀</h4>
               <p class="mb-4">Make your app management easy and fun!</p>
 
-              <form id="formAuthentication" class="mb-3" action="index.html" method="POST">
+              <div id="formAuthentication" class="mb-3">
+                  <div class="mb-3">
+                  <label for="firstName" class="form-label">First Name</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="firstName"
+                    name="firstName"
+                    placeholder="Enter your First Name"
+                    autofocus
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="lastName" class="form-label">Last Name</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="lastName"
+                    name="lastName"
+                    placeholder="Enter your Last Name"
+                    autofocus
+                  />
+                </div>
                 <div class="mb-3">
                   <label for="username" class="form-label">Username</label>
                   <input
@@ -149,10 +171,6 @@
                     placeholder="Enter your username"
                     autofocus
                   />
-                </div>
-                <div class="mb-3">
-                  <label for="email" class="form-label">Email</label>
-                  <input type="text" class="form-control" id="email" name="email" placeholder="Enter your email" />
                 </div>
                 <div class="mb-3 form-password-toggle">
                   <label class="form-label" for="password">Password</label>
@@ -168,6 +186,15 @@
                     <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
                   </div>
                 </div>
+                <div class="mb-3">
+                  <label for="email" class="form-label">Email</label>
+                  <input type="text" class="form-control" id="email" name="email" placeholder="Enter your email" />
+                </div>
+                <div class="mb-3">
+                  <label for="phone" class="form-label">Phone Number</label>
+                  <input type="text" class="form-control" id="phone" name="phone" placeholder="Enter your Phone Number" />
+                </div>
+                
 
                 <div class="mb-3">
                   <div class="form-check">
@@ -178,12 +205,12 @@
                     </label>
                   </div>
                 </div>
-                <button class="btn btn-primary d-grid w-100">Sign up</button>
-              </form>
+                <button id="register-user" class="btn btn-primary d-grid w-100">Sign up</button>
+              </div>
 
               <p class="text-center">
                 <span>Already have an account?</span>
-                <a href="auth-login-basic.html">
+                <a href="/auth/login">
                   <span>Sign in instead</span>
                 </a>
               </p>
@@ -224,5 +251,98 @@
 
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+    <script src='https://cdn.jsdelivr.net/npm/js-cookie@("@")3.0.1/dist/js.cookie.min.js'></script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+    <script src='//cdn.jsdelivr.net/npm/sweetalert2@("@")11'></script>
+
+    <script>
+        $.postJSON = function (url, data, callback) {
+            return jQuery.ajax({
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                'type': 'POST',
+                'url': url,
+                'data': JSON.stringify(data),
+                'dataType': 'json',
+                'success': callback
+            });
+        };
+    </script>
+
+    <script>
+        // Need to check if the cookie is still valid here...
+        // If it is still valid, redirect to the hom page...
+
+        $(document).ready(async function() {
+            var existingCookie = Cookies.get('BPTOKEN');
+            console.log('existingCookie: ', existingCookie);
+            if (existingCookie !== null && existingCookie !== undefined) {
+                await $.postJSON(`/api/auth/validate-token?token=${existingCookie}`, async function(r) {
+                    // Do something here when we have a success
+                }).done(async function(r) {
+                    console.log('redirecting the fucking thing...');
+                    window.location.replace('/dashboard')
+                }).fail(async function(r) {
+                    Cookies.remove('BPTOKEN');
+                })
+            }
+        })
+    </script>
+
+    <script>
+        $('#register-user').on('click', function() {
+            var registerData = {
+                "firstName": $('#firstName').val(),
+                "lastName": $('#lastName').val(),
+                "userName": $('#username').val(),
+                "password": $('#password').val(),
+                "email": $('#email').val(),
+                "phoneNumber": $('#phone').val()
+            };
+
+            // using ajax, because i spent an hour being frustrated with the postJSON
+
+            $.ajax({
+                url: "/api/auth",
+                type: "POST",
+                contentType: "application/json",
+                dataType: "JSON",
+                data: JSON.stringify(registerData),
+                crossDomain: true,
+                success: function (data, textStatus, jqXHR) {
+                    console.log('Dit poes werk fok');
+                    Swal.fire({
+                      icon: 'success',
+                      title: 'Account Successfully created',
+                      text: 'Click OK to be redirected to the login screen.',
+                      backdrop: `
+                        rgba(0,0,123,0.4)
+                        url("/images/nyan-cat.gif")
+                        left top
+                        no-repeat
+                      `
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            window.location.replace('/auth/login');
+                        }
+                    })
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    console.log('FUCK YOU...');
+                    Swal.fire({
+                      icon: 'error',
+                      title: 'Oops...',
+                      text: 'Something went wrong, try again later!'
+                    })
+                }
+            });
+        })    
+    </script>
+
   </body>
 </html>

@@ -21,13 +21,13 @@ namespace Bluegrass.Core.Controllers.Auth
         public async Task<IActionResult> RegisterAdmin([FromBody] UserRegistrationDto userRegistration)
         {
             var userResult = await _userAuthenticationService.RegisterAdminAsync(userRegistration);
-            return !userResult.Succeeded ? new BadRequestObjectResult(userResult) : StatusCode(201);
+            return !userResult.Succeeded ? new BadRequestObjectResult(userResult) : Ok( new { StatusCode = 201 });
         }
         [HttpPost]
         public async Task<IActionResult> RegisterUser([FromBody] UserRegistrationDto userRegistration)
         {
             var userResult = await _userAuthenticationService.RegisterUserAsync(userRegistration);
-            return !userResult.Succeeded ? new BadRequestObjectResult(userResult) : StatusCode(201);
+            return !userResult.Succeeded ? new BadRequestObjectResult(userResult) : Ok( new { StatusCode = 201 });   // I wanted to use StatusCode(201), but the frontend had a issue reading it as an error
         }
         [HttpPost("login")]
         public async Task<IActionResult> Authenticate([FromBody] LoginDto user)
