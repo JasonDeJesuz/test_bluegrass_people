@@ -1,0 +1,88 @@
+@{
+    Layout = "_Layout";
+}
+
+<!-- Content -->
+<div class="container-xxl flex-grow-1 container-p-y">
+    <!-- Hoverable Table rows -->
+    <div class="card">
+        <h5 class="card-header">Persons</h5>
+        <div id="god-poes"></div>
+        <div class="table-responsive text-nowrap persons-table">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Name</th>
+                        <th>Surname</th>
+                        <th>Gender</th>
+                        <th>Profile Picture</th>
+                        <th>Date Created</th>
+                        <th>Date Modified</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody class="table-border-bottom-0 persons-table-body" id="persons-table-body">
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!--/ Hoverable Table rows -->
+</div>
+<!-- / Content -->
+
+<script type="text/x-handlebars-template" id="persons_record">
+    <tr>
+        <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>{{id}}</strong></td>
+        <td>{{name}}</td>
+        <td>{{surname}}</td>
+        <td>{{gender}}</td>
+        <td>
+            <ul class="list-unstyled users-list m-0 avatar-group d-flex align-items-center">
+                <li data-bs-toggle="tooltip"
+                    data-popup="tooltip-custom"
+                    data-bs-placement="top"
+                    class="avatar avatar-xs pull-up"
+                    title="Lilian Fuller">
+                    <img src="../assets/img/avatars/5.png" alt="Avatar" class="rounded-circle" />
+                </li>
+            </ul>
+        </td>
+        <td>{{dateCreated}}</td>
+        <td>{{dateModified}}</td>
+        <td>
+            <div class="dropdown">
+                <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+                    <i class="bx bx-dots-vertical-rounded"></i>
+                </button>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-edit-alt me-1"></i> Edit</a>
+                    <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-trash me-1"></i> Delete</a>
+                </div>
+            </div>
+        </td>
+    </tr>
+</script>
+
+<script>
+    $(document).ready(async function (r) {
+        // Use the handlebar template to create the table
+        $.getJSON('/api/person', async function (r) {
+            // First confirmation
+        }).done(async function (r) {
+            // Second confirmation
+            console.log('r.data: ', r.data);
+            $(r.data).each(async function (i, o) {
+                console.log('adding one record');
+                var recordTemplate = Handlebars.compile($('#persons_record').html());
+                var rData = recordTemplate(o);
+                console.log('What the fuck: ', o);
+                $('#persons-table-body').append(rData);
+            })
+        }).fail(async function (r) {
+            // If failed
+        }).always(async function (r) {
+
+        })
+    })
+</script>

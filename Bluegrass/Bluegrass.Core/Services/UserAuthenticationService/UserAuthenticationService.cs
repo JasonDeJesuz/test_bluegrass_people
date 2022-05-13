@@ -99,5 +99,35 @@ namespace Bluegrass.Core.Services.UserAuthenticationService
             );
             return tokenOptions;
         }
+
+        public bool ValidateToken(string token)
+        {
+            if (null == token)
+                return false;
+
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var jwtSettings = _configuration.GetSection("JwtConfig");
+            var key = Encoding.UTF8.GetBytes(jwtSettings["Secret"]);
+
+            try
+            {
+                tokenHandler.ValidateToken(token, new TokenValidationParameters
+                {
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(key),
+                    ValidateIssuer = false,
+                    ValidateAudience = false,
+                    ClockSkew = TimeSpan.Zero
+                }, out SecurityToken validatedToken);
+
+                var jwtToken = (JwtSecurityToken)validatedToken;
+
+                return true;
+            } catch
+            {
+                // Return false if the validation fails
+                return false;
+            }
+        }
     }
 }

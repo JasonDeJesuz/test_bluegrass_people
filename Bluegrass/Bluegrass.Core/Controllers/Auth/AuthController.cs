@@ -33,7 +33,11 @@ namespace Bluegrass.Core.Controllers.Auth
         public async Task<IActionResult> Authenticate([FromBody] LoginDto user)
         {
             return !await _userAuthenticationService.ValidateUserAsync(user) ? Unauthorized() : Ok(new { Token = await _userAuthenticationService.CreateTokenAsync()});
-
+        }
+        [HttpPost("validate-token")]
+        public IActionResult ValidateToken(string token)
+        {
+            return !_userAuthenticationService.ValidateToken(token) ? new BadRequestObjectResult(new { TokenValid = false }) : Ok(new { TokenValid = true });
         }
     }
 }
