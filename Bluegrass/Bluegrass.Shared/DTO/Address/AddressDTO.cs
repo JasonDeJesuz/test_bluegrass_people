@@ -10,7 +10,5 @@ namespace Bluegrass.Shared.DTO.Address
         public string City { get; set; }
         public DateTime DateCreated { get; set; }
         public DateTime DateModified { get; set; }
-
-        public virtual PersonDTO? Person { get; set; }
     }
 }

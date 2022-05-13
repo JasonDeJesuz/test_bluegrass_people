@@ -1,4 +1,5 @@
 using System;
+using Bluegrass.Core.Services.ChangeService;
 using Bluegrass.Core.Services.PersonService;
 using Bluegrass.Data;
 using Microsoft.AspNetCore.Builder;
@@ -13,6 +14,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.RegisterDataServices(builder.Configuration);
 // Add the Service for the Data
 builder.Services.AddTransient<IPersonService, PersonService>();
+builder.Services.AddTransient<IChangeService, ChangeService>();
 // Add Automapper
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 

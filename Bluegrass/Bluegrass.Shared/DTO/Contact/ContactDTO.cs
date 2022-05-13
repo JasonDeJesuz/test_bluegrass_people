@@ -10,7 +10,5 @@ namespace Bluegrass.Shared.DTO.Contact
         public string Mobile { get; set; }
         public DateTime DateCreated { get; set; }
         public DateTime DateModified { get; set; }
-
-        public virtual PersonDTO? Person { get; set; }
     }
 }

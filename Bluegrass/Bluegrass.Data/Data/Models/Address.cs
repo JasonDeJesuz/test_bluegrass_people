@@ -9,8 +9,8 @@ namespace Bluegrass.Data.Data.Models
     {
         [Key]
         public int Id { get; set; }
-        public string Country { get; set; }
-        public string City { get; set; }
+        public string? Country { get; set; }
+        public string? City { get; set; }
         [ForeignKey("Person")]
         public int PersonId { get; set; }
         public DateTime DateCreated { get; set; }

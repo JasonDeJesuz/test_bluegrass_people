@@ -13,14 +13,14 @@ namespace Bluegrass.Shared.DTO.Person
         public string Gender { get; set; }
         public DateTime DateCreated { get; set; }
         public DateTime DateModified { get; set; }
-        public AddressDTO Address { get; set; }
-        public ContactDTO Contact { get; set; }
-        public ProfilePictureDTO ProfilePicture { get; set; }
-        public PersonDTO()
-        {
-            this.Address = new AddressDTO();
-            this.Contact = new ContactDTO();
-            this.ProfilePicture = new ProfilePictureDTO();
-        }
+        public AddressDTO? Address { get; set; }
+        public ContactDTO? Contact { get; set; }
+        public ProfilePictureDTO? ProfilePicture { get; set; }
+        // public PersonDTO()
+        // {
+        //     this.Address = new AddressDTO();
+        //     this.Contact = new ContactDTO();
+        //     this.ProfilePicture = new ProfilePictureDTO();
+        // }
     }
 }

@@ -117,7 +117,7 @@ namespace Bluegrass.Core.Controllers.Person
                 // TODO: Do the updates for the Profile Pictures
 
                 // TODO: Use the Change Service to detect the changes that have been made...
-                await _changeService.GetChangesAsync(persons.OriginalData, persons.NewData);
+                await _changeService.GetPersonChangesAsync(persons.OriginalData, persons.NewData);
 
                 return new ApiResponse()
                 {

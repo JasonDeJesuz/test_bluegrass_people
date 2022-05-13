@@ -67,16 +67,37 @@ namespace Bluegrass.Core.Services.PersonService
         {
             try
             {
-                var personToUpdate = await _context.Persons.Where(x => x.Id.Equals(id)).FirstOrDefaultAsync();
+                var personToUpdate = await _context.Persons.Where(x => x.Id.Equals(id)).Include(x => x.Address).Include(x => x.Contact).Include(x => x.ProfilePicture).FirstOrDefaultAsync();
                 if (null == personToUpdate)
                     throw new Exception($"Person not found with ID {id}");
 
                 var originalData = _mapper.Map<PersonDTO>(personToUpdate);
 
                 // Update the values
+                // TODO: Do some null checks on the Address and the City
+                // TODO: Maybe move the Address and the City into their own services
                 personToUpdate.Name = personToUpdate.Name != updateData.Name ? updateData.Name : personToUpdate.Name;
                 personToUpdate.Surname = personToUpdate.Surname != updateData.Surname ? updateData.Surname : personToUpdate.Surname;
                 personToUpdate.Gender = personToUpdate.Gender != updateData.Gender ? updateData.Gender : personToUpdate.Gender;
+                personToUpdate.DateModified = DateTime.Now;
+
+                personToUpdate.Address.Country = personToUpdate.Address.Country != updateData.Address?.Country
+                    ? updateData.Address?.Country
+                    : personToUpdate.Address.Country;
+                personToUpdate.Address.City = personToUpdate.Address.City != updateData.Address?.City
+                    ? updateData.Address?.City
+                    : personToUpdate.Address.City;
+                personToUpdate.Address.DateModified = DateTime.Now;
+                
+                personToUpdate.Contact.Email = personToUpdate.Contact.Email != updateData.Contact?.Email
+                    ? updateData.Contact?.Email
+                    : personToUpdate.Contact.Email;
+                personToUpdate.Contact.Mobile = personToUpdate.Contact.Mobile != updateData.Contact?.Mobile
+                    ? updateData.Contact?.Mobile
+                    : personToUpdate.Contact.Mobile;
+                personToUpdate.Contact.DateModified = DateTime.Now;
+                
+                // TODO: Profile picture will have it's own point of entry
 
                 await _context.SaveChangesAsync();
 
