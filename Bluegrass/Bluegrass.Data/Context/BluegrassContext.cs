@@ -1,10 +1,12 @@
 using System;
+using Bluegrass.Data.Authentication;
 using Bluegrass.Data.Data.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace Bluegrass.Data.Context
 {
-    public class BluegrassContext : DbContext
+    public class BluegrassContext : IdentityDbContext<ApplicationUser>
     {
         #region Members
         

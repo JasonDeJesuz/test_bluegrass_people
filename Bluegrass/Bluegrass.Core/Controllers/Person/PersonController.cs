@@ -4,8 +4,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using Bluegrass.Core.Services.ChangeService;
 using Bluegrass.Core.Services.PersonService;
+using Bluegrass.Data.Authentication;
 using Bluegrass.Shared.DTO.Generic;
 using Bluegrass.Shared.DTO.Person;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -34,6 +36,7 @@ namespace Bluegrass.Core.Controllers.Person
         
         // GET: api/Person
         [HttpGet]
+        [Authorize]
         public async Task<ApiResponse> Get()
         {
             try
@@ -58,6 +61,7 @@ namespace Bluegrass.Core.Controllers.Person
 
         // GET: api/Person/5
         [HttpGet("{id}", Name = "Get")]
+        [Authorize]
         public async Task<ApiResponse> Get(int id)
         {
             try
@@ -82,6 +86,7 @@ namespace Bluegrass.Core.Controllers.Person
 
         // POST: api/Person
         [HttpPost]
+        [Authorize(Roles = ApplicationUserRoles.Admin)]
         public async Task<ApiResponse> Post([FromBody] PersonDTO createData)
         {
             try
@@ -106,6 +111,7 @@ namespace Bluegrass.Core.Controllers.Person
 
         // PUT: api/Person/5
         [HttpPut("{id}")]
+        [Authorize(Roles = ApplicationUserRoles.Admin)]
         public async Task<ApiResponse> Put(int id, [FromBody] PersonDTO updateData)
         {
             try
@@ -137,6 +143,7 @@ namespace Bluegrass.Core.Controllers.Person
 
         // DELETE: api/Person/5
         [HttpDelete("{id}")]
+        [Authorize(Roles = ApplicationUserRoles.Admin)]
         public async Task<ApiResponse> Delete(int id)
         {
             try

@@ -1,6 +1,7 @@
 using System;
 using Bluegrass.Core.Services.ChangeService;
 using Bluegrass.Core.Services.PersonService;
+using Bluegrass.Core.Services.UserAuthenticationService;
 using Bluegrass.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
@@ -12,9 +13,14 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 // Add the database services
 builder.Services.RegisterDataServices(builder.Configuration);
+// Add the database identity services
+builder.Services.AddAuthentication();
+builder.Services.ConfigureIdentity();
+builder.Services.ConfigureJWT(builder.Configuration);
 // Add the Service for the Data
 builder.Services.AddTransient<IPersonService, PersonService>();
 builder.Services.AddTransient<IChangeService, ChangeService>();
+builder.Services.AddTransient<IUserAuthenticationService, UserAuthenticationService>();
 // Add Automapper
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
@@ -33,6 +39,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(
