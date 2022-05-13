@@ -219,6 +219,8 @@
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
+    <script src='//cdn.jsdelivr.net/npm/sweetalert2@("@")11'></script>
+    
     <script>
         $.postJSON = function (url, data, callback) {
             return jQuery.ajax({
@@ -276,7 +278,17 @@
                 // Here we do the redirect
                 window.location.replace('/dashboard');
             }).fail(async function(r) {
-
+                Swal.fire({
+                  icon: 'error',
+                  title: 'No account found!',
+                  text: 'We cannot find an account with these records.',
+                  backdrop: `
+                    rgba(0,0,123,0.4)
+                    url("/images/patrick-sad.gif")
+                    left top
+                    no-repeat
+                  `
+                })
             }).always(async function(r) {
 
             })
