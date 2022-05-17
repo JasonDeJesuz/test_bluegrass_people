@@ -62,6 +62,7 @@ namespace Bluegrass.Core.Services.UserAuthenticationService
         {
             _user = await _userManager.FindByNameAsync(loginDto.UserName);
             var result = _user != null && await _userManager.CheckPasswordAsync(_user, loginDto.Password);
+                
             return result;
         }
         private SigningCredentials GetSigningCredentials()

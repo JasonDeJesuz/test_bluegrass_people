@@ -8,5 +8,13 @@ namespace Bluegrass.Controllers
         {
             return View("Persons");
         }
+        public IActionResult Create()
+        {
+            return View("Person");
+        }
+        public IActionResult Edit()
+        {
+            return View("Person");
+        }
     }
 }

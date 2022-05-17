@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Bluegrass.Core.Services.UserAuthenticationService;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Bluegrass.Controllers
 {
