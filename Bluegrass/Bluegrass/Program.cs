@@ -1,5 +1,7 @@
 using System;
 using Bluegrass.Core.Services.ChangeService;
+using Bluegrass.Core.Services.FileService;
+using Bluegrass.Core.Services.HelperService;
 using Bluegrass.Core.Services.PersonService;
 using Bluegrass.Core.Services.UserAuthenticationService;
 using Bluegrass.Data;
@@ -21,6 +23,8 @@ builder.Services.ConfigureJWT(builder.Configuration);
 builder.Services.AddTransient<IPersonService, PersonService>();
 builder.Services.AddTransient<IChangeService, ChangeService>();
 builder.Services.AddTransient<IUserAuthenticationService, UserAuthenticationService>();
+builder.Services.AddTransient<IFileService, FileService>();
+builder.Services.AddTransient<IHelperService, HelperService>();
 // Add Automapper
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 

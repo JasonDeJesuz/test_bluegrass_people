@@ -16,6 +16,7 @@ document.addEventListener('DOMContentLoaded', function (e) {
     if (accountUserImage) {
       const resetImage = accountUserImage.src;
       fileInput.onchange = () => {
+        console.log('changing the file...');
         if (fileInput.files[0]) {
           accountUserImage.src = window.URL.createObjectURL(fileInput.files[0]);
         }

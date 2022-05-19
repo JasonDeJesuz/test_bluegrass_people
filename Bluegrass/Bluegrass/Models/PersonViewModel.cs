@@ -2,7 +2,7 @@
 
 namespace Bluegrass.Models
 {
-    public class PersonViewModel
+    public class PersonViewModel : HelpersViewModel
     {
         public string? ActionType { get; set; }
         public int? Id { get; set; }

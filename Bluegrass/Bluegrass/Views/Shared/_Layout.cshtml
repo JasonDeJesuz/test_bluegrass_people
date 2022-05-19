@@ -125,7 +125,7 @@
                 <ul class="menu-inner py-1">
                     <!-- Dashboard -->
                     <li class="menu-item active">
-                        <a href="/person" class="menu-link">
+                        <a href="/person/list" class="menu-link">
                             <i class="menu-icon tf-icons bx bx-home-circle"></i>
                             <div data-i18n="Analytics">People</div>
                         </a>
@@ -284,6 +284,24 @@
 
     <script>
         var existingToken = Cookies.get('BPTOKEN');
+
+        $.postFORMDATA = function (url, data, callback) {
+            return jQuery.ajax({
+                headers: {
+                    'Accept': 'multipart/form-data',
+                    @* "Content-Type": 'multipart/form-data', *@
+                    'Authorization': `bearer ${existingToken}`
+                },
+                'processData': false,
+                'contentType': false,
+                'cache': false,
+                'type': 'POST',
+                'url': url,
+                'enctype': 'multipart/form-data',
+                'data': data,
+                'success': callback
+            })
+        }
 
         $.postJSON = function (url, data, callback) {
             return jQuery.ajax({

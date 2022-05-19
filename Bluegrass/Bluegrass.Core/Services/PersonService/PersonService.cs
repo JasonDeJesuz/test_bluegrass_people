@@ -34,7 +34,7 @@ namespace Bluegrass.Core.Services.PersonService
             try
             {
                 var allPersonsIncludingRelationships = await _context.Persons.Include(x => x.Contact).Include(x => x.Address)
-                    .Include(x => x.ProfilePicture).Select(x => _mapper.Map<PersonDTO>(x)).ToListAsync();
+                    .Include(x => x.Avatar).Select(x => _mapper.Map<PersonDTO>(x)).ToListAsync();
 
                 var allPersons = await _context.Persons.Select(x => _mapper.Map<PersonDTO>(x)).ToListAsync();
 
@@ -51,7 +51,7 @@ namespace Bluegrass.Core.Services.PersonService
         {
             try
             {
-                var personById = await _context.Persons.Where(x => x.Id == id).Include(x => x.Contact).Include(x => x.Address).Include(x => x.ProfilePicture).Select(x => _mapper.Map<PersonDTO>(x)).FirstOrDefaultAsync();
+                var personById = await _context.Persons.Where(x => x.Id == id).Include(x => x.Contact).Include(x => x.Address).Include(x => x.Avatar).Select(x => _mapper.Map<PersonDTO>(x)).FirstOrDefaultAsync();
                 if (personById == null)
                     throw new Exception($"Person not found with ID {id}");
 
@@ -67,7 +67,7 @@ namespace Bluegrass.Core.Services.PersonService
         {
             try
             {
-                var personToUpdate = await _context.Persons.Where(x => x.Id.Equals(id)).Include(x => x.Address).Include(x => x.Contact).Include(x => x.ProfilePicture).FirstOrDefaultAsync();
+                var personToUpdate = await _context.Persons.Where(x => x.Id.Equals(id)).Include(x => x.Address).Include(x => x.Contact).Include(x => x.Avatar).FirstOrDefaultAsync();
                 if (null == personToUpdate)
                     throw new Exception($"Person not found with ID {id}");
 
@@ -148,12 +148,16 @@ namespace Bluegrass.Core.Services.PersonService
         {
             try
             {
-                var personToDelete = await this.GetAsync(id);
+                var personToDelete = await _context.Persons.Where(x => x.Id.Equals(id)).Include(x => x.Address).Include(x => x.Contact).Include(x => x.Avatar).FirstOrDefaultAsync();
+                if (null == personToDelete)
+                    throw new Exception($"Person not found with ID {id}");
+
+                var personDto = _mapper.Map<PersonDTO>(personToDelete);
 
                 _context.Remove(personToDelete);
                 await _context.SaveChangesAsync();
 
-                return personToDelete;
+                return personDto;
             } catch(Exception ex)
             {
                 _logger.LogError($"Delete Person with ID {id} failed with Exception => {ex.Message}");

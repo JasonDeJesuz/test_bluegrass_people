@@ -29,6 +29,11 @@ brew install jq
 
 ### Windows
 
+## Cloning the repository
+```
+https://github.com/JasonDeJesuz/test_bluegrass_people
+```
+
 ## Starting the Services
 After cloning the repository:
 ```

@@ -1,7 +1,7 @@
 using System;
 using Bluegrass.Shared.DTO.Address;
+using Bluegrass.Shared.DTO.Avatar;
 using Bluegrass.Shared.DTO.Contact;
-using Bluegrass.Shared.DTO.ProfilePicture;
 
 namespace Bluegrass.Shared.DTO.Person
 {
@@ -15,7 +15,7 @@ namespace Bluegrass.Shared.DTO.Person
         public DateTime DateModified { get; set; }
         public AddressDTO? Address { get; set; }
         public ContactDTO? Contact { get; set; }
-        public ProfilePictureDTO? ProfilePicture { get; set; }
+        public AvatarDTO? Avatar { get; set; }
         // public PersonDTO()
         // {
         //     this.Address = new AddressDTO();

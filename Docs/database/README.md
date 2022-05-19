@@ -56,13 +56,13 @@ If you're more comfortable working inside Visual Studio or have experience with 
 
 #### Create your first migration
 ```
-dotnet ef migrations add InitialDatabase
+dotnet ef migrations add InitialDatabase --project Bluegrass.Data --startup-project Bluegrass
 ```
 EF Core will create a directory called Migrations in your project, and generate some files. It's a good idea to inspect what exactly EF Core generated - and possibly amend it - but we'll skip over that for now.
 
 #### Create database and schema
 ```
-dotnet ef database update
+dotnet ef database update --project Bluegrass.Data --startup-project Bluegrass
 ```
 
 #### Updating the database with features
@@ -85,3 +85,5 @@ Note that this time, EF detects that the database already exists. In addition, w
 ## References
 - [dotnet ef - migrations](https://docs.microsoft.com/en-us/ef/core/managing-schemas/migrations/?tabs=dotnet-core-cli)
 - [MS SQL Server using Docker and Mac](https://setapp.com/how-to/install-sql-server)
+- [Docker Container Logs Tailing](https://www.papertrail.com/solution/tips/how-to-live-tail-docker-logs/)
+- [Quickstart](https://docs.docker.com/samples/aspnet-mssql-compose/)

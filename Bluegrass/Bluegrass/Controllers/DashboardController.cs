@@ -7,7 +7,7 @@ namespace Bluegrass.Controllers
     {
         public IActionResult Index()
         {
-            return View("/Views/Person/Persons.cshtml");
+            return RedirectToActionPermanent("List", "Person");
         }
     }
 }

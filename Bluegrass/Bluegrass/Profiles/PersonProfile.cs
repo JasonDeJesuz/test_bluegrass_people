@@ -19,8 +19,8 @@ namespace Bluegrass.Profiles
                     opt => opt.MapFrom(src => src.Contact)
                 )
                 .ForMember(
-                    dest => dest.ProfilePicture,
-                    opt => opt.MapFrom(src => src.ProfilePicture)
+                    dest => dest.Avatar,
+                    opt => opt.MapFrom(src => src.Avatar)
                 ).ReverseMap();
         }
     }

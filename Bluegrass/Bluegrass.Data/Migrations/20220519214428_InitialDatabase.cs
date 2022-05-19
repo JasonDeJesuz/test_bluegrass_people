@@ -180,6 +180,7 @@ namespace Bluegrass.Data.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Country = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Province = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     City = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     PersonId = table.Column<int>(type: "int", nullable: false),
                     DateCreated = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -190,6 +191,31 @@ namespace Bluegrass.Data.Migrations
                     table.PrimaryKey("PK_Addresses", x => x.Id);
                     table.ForeignKey(
                         name: "FK_Addresses_Persons_PersonId",
+                        column: x => x.PersonId,
+                        principalTable: "Persons",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Avatars",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Bytes = table.Column<byte[]>(type: "varbinary(max)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    FileExtension = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Size = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    PersonId = table.Column<int>(type: "int", nullable: false),
+                    DateCreated = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    DateModified = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Avatars", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Avatars_Persons_PersonId",
                         column: x => x.PersonId,
                         principalTable: "Persons",
                         principalColumn: "Id",
@@ -219,35 +245,10 @@ namespace Bluegrass.Data.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.CreateTable(
-                name: "ProfilePictures",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Bytes = table.Column<byte[]>(type: "varbinary(max)", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    FileExtension = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Size = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    PersonId = table.Column<int>(type: "int", nullable: false),
-                    DateCreated = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    DateModified = table.Column<DateTime>(type: "datetime2", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ProfilePictures", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_ProfilePictures_Persons_PersonId",
-                        column: x => x.PersonId,
-                        principalTable: "Persons",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
             migrationBuilder.InsertData(
                 table: "Persons",
                 columns: new[] { "Id", "DateCreated", "DateModified", "Gender", "Name", "Surname" },
-                values: new object[] { 1, new DateTime(2022, 5, 13, 3, 42, 51, 736, DateTimeKind.Local).AddTicks(6347), new DateTime(2022, 5, 13, 3, 42, 51, 736, DateTimeKind.Local).AddTicks(6381), "Male", "Jason", "De Jesuz" });
+                values: new object[] { 1, new DateTime(2022, 5, 19, 23, 44, 28, 606, DateTimeKind.Local).AddTicks(30), new DateTime(2022, 5, 19, 23, 44, 28, 606, DateTimeKind.Local).AddTicks(60), "Male", "Jason", "De Jesuz" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Addresses_PersonId",
@@ -295,14 +296,14 @@ namespace Bluegrass.Data.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Contacts_PersonId",
-                table: "Contacts",
+                name: "IX_Avatars_PersonId",
+                table: "Avatars",
                 column: "PersonId",
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_ProfilePictures_PersonId",
-                table: "ProfilePictures",
+                name: "IX_Contacts_PersonId",
+                table: "Contacts",
                 column: "PersonId",
                 unique: true);
         }
@@ -328,10 +329,10 @@ namespace Bluegrass.Data.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "Contacts");
+                name: "Avatars");
 
             migrationBuilder.DropTable(
-                name: "ProfilePictures");
+                name: "Contacts");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");

@@ -13,8 +13,16 @@
 
 ## Getting Started
 ### Docker 🐳
+```
+cd Bluegrass
+docker build .
+```
 
 ### dotnet
+```
+cd Bluegrass
+dotnet run --project Bluegrass
+```
 
 ## Quick Links
 - [Database](/docs/database/README.md)

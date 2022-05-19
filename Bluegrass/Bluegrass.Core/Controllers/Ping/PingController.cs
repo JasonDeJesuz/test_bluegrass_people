@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace Bluegrass.Core.Controllers;
+namespace Bluegrass.Core.Controllers.Ping;
 
 [ApiController]
 [Route("api/[controller]")]

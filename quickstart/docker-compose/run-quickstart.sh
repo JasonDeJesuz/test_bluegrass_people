@@ -87,6 +87,16 @@ echo
 echoBold "CHECKING DEPENDENCIES"
 
 echo
+echo "Using .NET 6 as the core framework"
+if ! which dotnet; then
+    echo "ERROR: This quickstart uses .NET 6, but .NET 6 is not installed!";
+    echo "see: https://dotnet.microsoft.com/en-us/download"
+    echo
+    exit 1
+fi
+dotnet --version | head -2
+
+echo
 echo "Using docker-compose to spin up environment"
 if ! which docker-compose; then
     echo "ERROR: This quickstart uses docker-compose, but docker-compose is not installed!";
@@ -102,7 +112,7 @@ docker-compose version
 #     echo "ERROR: This quickstart uses jq, but jq is not installed!";
 #     echo "see: https://stedolan.github.io/jq/download/ for installation instructions"
 #     echo "(on ubuntu: sudo apt-get install jq)"
-#     echo "(on mac, using HomeBrew: brew install sed)"
+#     echo "(on mac, using HomeBrew: brew install sed)"""
 #     echo
 #     exit 1
 # fi

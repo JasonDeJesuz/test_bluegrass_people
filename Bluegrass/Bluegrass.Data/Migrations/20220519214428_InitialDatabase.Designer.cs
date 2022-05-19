@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Bluegrass.Data.Migrations
 {
     [DbContext(typeof(BluegrassContext))]
-    [Migration("20220513104251_InitialDatabase")]
+    [Migration("20220519214428_InitialDatabase")]
     partial class InitialDatabase
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -118,12 +118,55 @@ namespace Bluegrass.Data.Migrations
                     b.Property<int>("PersonId")
                         .HasColumnType("int");
 
+                    b.Property<string>("Province")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
 
                     b.HasIndex("PersonId")
                         .IsUnique();
 
                     b.ToTable("Addresses");
+                });
+
+            modelBuilder.Entity("Bluegrass.Data.Data.Models.Avatar", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<byte[]>("Bytes")
+                        .IsRequired()
+                        .HasColumnType("varbinary(max)");
+
+                    b.Property<DateTime>("DateCreated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DateModified")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FileExtension")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("PersonId")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("Size")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PersonId")
+                        .IsUnique();
+
+                    b.ToTable("Avatars");
                 });
 
             modelBuilder.Entity("Bluegrass.Data.Data.Models.Contact", b =>
@@ -191,52 +234,12 @@ namespace Bluegrass.Data.Migrations
                         new
                         {
                             Id = 1,
-                            DateCreated = new DateTime(2022, 5, 13, 3, 42, 51, 736, DateTimeKind.Local).AddTicks(6347),
-                            DateModified = new DateTime(2022, 5, 13, 3, 42, 51, 736, DateTimeKind.Local).AddTicks(6381),
+                            DateCreated = new DateTime(2022, 5, 19, 23, 44, 28, 606, DateTimeKind.Local).AddTicks(30),
+                            DateModified = new DateTime(2022, 5, 19, 23, 44, 28, 606, DateTimeKind.Local).AddTicks(60),
                             Gender = "Male",
                             Name = "Jason",
                             Surname = "De Jesuz"
                         });
-                });
-
-            modelBuilder.Entity("Bluegrass.Data.Data.Models.ProfilePicture", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<byte[]>("Bytes")
-                        .IsRequired()
-                        .HasColumnType("varbinary(max)");
-
-                    b.Property<DateTime>("DateCreated")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("DateModified")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("FileExtension")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("PersonId")
-                        .HasColumnType("int");
-
-                    b.Property<decimal>("Size")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("PersonId")
-                        .IsUnique();
-
-                    b.ToTable("ProfilePictures");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -383,22 +386,22 @@ namespace Bluegrass.Data.Migrations
                     b.Navigation("Person");
                 });
 
-            modelBuilder.Entity("Bluegrass.Data.Data.Models.Contact", b =>
+            modelBuilder.Entity("Bluegrass.Data.Data.Models.Avatar", b =>
                 {
                     b.HasOne("Bluegrass.Data.Data.Models.Person", "Person")
-                        .WithOne("Contact")
-                        .HasForeignKey("Bluegrass.Data.Data.Models.Contact", "PersonId")
+                        .WithOne("Avatar")
+                        .HasForeignKey("Bluegrass.Data.Data.Models.Avatar", "PersonId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Person");
                 });
 
-            modelBuilder.Entity("Bluegrass.Data.Data.Models.ProfilePicture", b =>
+            modelBuilder.Entity("Bluegrass.Data.Data.Models.Contact", b =>
                 {
                     b.HasOne("Bluegrass.Data.Data.Models.Person", "Person")
-                        .WithOne("ProfilePicture")
-                        .HasForeignKey("Bluegrass.Data.Data.Models.ProfilePicture", "PersonId")
+                        .WithOne("Contact")
+                        .HasForeignKey("Bluegrass.Data.Data.Models.Contact", "PersonId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -461,10 +464,10 @@ namespace Bluegrass.Data.Migrations
                     b.Navigation("Address")
                         .IsRequired();
 
-                    b.Navigation("Contact")
+                    b.Navigation("Avatar")
                         .IsRequired();
 
-                    b.Navigation("ProfilePicture")
+                    b.Navigation("Contact")
                         .IsRequired();
                 });
 #pragma warning restore 612, 618

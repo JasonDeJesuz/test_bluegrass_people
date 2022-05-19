@@ -1,6 +1,7 @@
 using System;
 using Bluegrass.Data.Authentication;
 using Bluegrass.Data.Data.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -27,6 +28,12 @@ namespace Bluegrass.Data.Context
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            // Exclude tables from Migrations
+            // LOL. I am a bit confused at the moment.
+            // modelBuilder.Entity<IdentityUser>(entity => {
+            //     entity.ToTable("AspNetRoles", t => t.ExcludeFromMigrations());
+            // });
+
             // TODO: Encryption on Database data
             
             // TODO: Set the Identity Columns
@@ -45,7 +52,7 @@ namespace Bluegrass.Data.Context
                 entity.Property(e => e.Id).ValueGeneratedOnAdd();
             });
 
-            modelBuilder.Entity<ProfilePicture>(entity =>
+            modelBuilder.Entity<Avatar>(entity =>
             {
                 entity.Property(e => e.Id).ValueGeneratedOnAdd();
             });
@@ -84,6 +91,23 @@ namespace Bluegrass.Data.Context
                 // });
             });
 
+            #region Dropdown Values
+            modelBuilder.Entity<DropdownCountry>()
+            .HasData(
+                new DropdownCountry { Id = 1, Country = "Select" },
+                new DropdownCountry { Id=2, Country = "South Africa" },
+                new DropdownCountry { Id=3, Country = "United States of America" },
+                new DropdownCountry { Id=4, Country = "Singapore" }
+            );
+
+            modelBuilder.Entity<DropdownGender>()
+            .HasData(
+                new DropdownGender { Id=1, Gender="Select" },
+                new DropdownGender { Id=2, Gender = "Male"},
+                new DropdownGender { Id=3, Gender = "Female"}
+            );
+            #endregion
+
             modelBuilder = LinkModels(modelBuilder);
             
             base.OnModelCreating(modelBuilder);
@@ -107,7 +131,7 @@ namespace Bluegrass.Data.Context
                 .OnDelete(DeleteBehavior.Cascade);
             
             // Profile picture of person
-            modelBuilder.Entity<Person>().HasOne<ProfilePicture>(i => i.ProfilePicture).WithOne(i => i.Person)
+            modelBuilder.Entity<Person>().HasOne<Avatar>(i => i.Avatar).WithOne(i => i.Person)
                 .OnDelete(DeleteBehavior.Cascade);
 
             return modelBuilder;
@@ -120,8 +144,15 @@ namespace Bluegrass.Data.Context
         public DbSet<Person> Persons { get; set; }
         public DbSet<Contact> Contacts { get; set; }
         public DbSet<Address> Addresses { get; set; }
-        public DbSet<ProfilePicture> ProfilePictures { get; set; }
+        public DbSet<Avatar> Avatars { get; set; }
         
+        #endregion
+
+        #region Dropdown Data
+
+        public DbSet<DropdownCountry> DropdownCountries { get; set; }
+        public DbSet<DropdownGender> DropdownGenders { get; set; }
+
         #endregion
     }
 }
