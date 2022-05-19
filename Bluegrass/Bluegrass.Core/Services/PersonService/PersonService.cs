@@ -51,7 +51,7 @@ namespace Bluegrass.Core.Services.PersonService
         {
             try
             {
-                var personById = await _context.Persons.Where(x => x.Id == id).Select(x => _mapper.Map<PersonDTO>(x)).FirstOrDefaultAsync();
+                var personById = await _context.Persons.Where(x => x.Id == id).Include(x => x.Contact).Include(x => x.Address).Include(x => x.ProfilePicture).Select(x => _mapper.Map<PersonDTO>(x)).FirstOrDefaultAsync();
                 if (personById == null)
                     throw new Exception($"Person not found with ID {id}");
 
@@ -81,6 +81,8 @@ namespace Bluegrass.Core.Services.PersonService
                 personToUpdate.Gender = personToUpdate.Gender != updateData.Gender ? updateData.Gender : personToUpdate.Gender;
                 personToUpdate.DateModified = DateTime.Now;
 
+                if (null == personToUpdate.Address)
+                    personToUpdate.Address = new Address() { DateCreated = DateTime.Now };
                 personToUpdate.Address.Country = personToUpdate.Address.Country != updateData.Address?.Country
                     ? updateData.Address?.Country
                     : personToUpdate.Address.Country;
@@ -89,6 +91,8 @@ namespace Bluegrass.Core.Services.PersonService
                     : personToUpdate.Address.City;
                 personToUpdate.Address.DateModified = DateTime.Now;
                 
+                if (null == personToUpdate.Contact)
+                    personToUpdate.Contact = new Contact() { DateCreated = DateTime.Now };
                 personToUpdate.Contact.Email = personToUpdate.Contact.Email != updateData.Contact?.Email
                     ? updateData.Contact?.Email
                     : personToUpdate.Contact.Email;

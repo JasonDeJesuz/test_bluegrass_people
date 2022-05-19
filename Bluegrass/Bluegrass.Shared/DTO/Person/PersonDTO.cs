@@ -22,5 +22,9 @@ namespace Bluegrass.Shared.DTO.Person
         //     this.Contact = new ContactDTO();
         //     this.ProfilePicture = new ProfilePictureDTO();
         // }
+        public PersonDTO()
+        {
+            DateCreated = DateTime.Now;
+        }
     }
 }
