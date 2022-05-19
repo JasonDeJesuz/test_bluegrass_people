@@ -45,4 +45,11 @@ app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Dashboard}/{action=Index}/{id?}");
+
+// Ensure Database is Created
+app.EnsureDatabaseCreated();
+
+// Migrations
+// app.ApplyDatabaseMigrations(); // TODO: Finish the Migration on app Run
+
 app.Run();
