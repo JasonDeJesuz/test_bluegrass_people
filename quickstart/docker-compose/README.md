@@ -1,3 +1,5 @@
+![Bluegrass Logo](/Docs/github_assets/bluegrass_logo.jpeg)
+
 # Quickstart
 This directory contains a docker-compose setup that includes the services with all their supporting infrastructure and configuration to allow the Directory API services to be worked with locally.
 
@@ -57,3 +59,6 @@ This will start the Bluegrass directory service
 |----------|-------|
 |localhost:7195| Bluegrass People Directory |
 
+---
+
+<a href="https://guywithagopro.com"><img src="../../Docs/github_assets/j_logo.png" alt="jason logo" width=200 /></a>

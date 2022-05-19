@@ -1,0 +1,249 @@
+{
+	"info": {
+		"_postman_id": "dc4abb68-9bc1-4c02-bdc7-47a10e6da951",
+		"name": "Bluegrass Test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Person",
+			"item": [
+				{
+					"name": "Get Persons",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiSmFzb25CRGVKZXN1eiIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IkFkbWluIiwiZXhwIjoxNjUyNDc2MzU1LCJpc3MiOiJodHRwczovL2xvY2FsaG9zdDo3MTk1IiwiYXVkIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzE5NSJ9.vVWWpM0jebO-toOQ6bB0eIJ4VigxoONVTY-8WPdIQDU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/person",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"person"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Person",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiSmFzb25CRGVKZXN1eiIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IkFkbWluIiwiZXhwIjoxNjUyODEyNjk0LCJpc3MiOiJodHRwczovL2xvY2FsaG9zdDo3MTk1IiwiYXVkIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzE5NSJ9.7R17_w8myKOImQwvLkToa64XigjKwexni0BziHz9QJo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"Name\": \"Jason\",\n    \"Surname\": \"De Jesuz\",\n    \"Gender\": \"Male\",\n    \"Address\": {\n        \"Country\": \"South Africa\",\n        \"City\": \"Pretoria\"\n    },\n    \"Contact\": {\n        \"Email\": \"dejesuzjason@gmail.com\",\n        \"Mobile\": \"0823405879\"\n    }\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/person",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"person"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Person",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"Name\": \"Jasmin\",\n    \"Surname\": \"De Jesuz\",\n    \"Gender\": \"Male\",\n    \"Address\": {\n        \"Country\": \"Singapore\",\n        \"City\": \"Pretoria\"\n    },\n    \"Contact\": {\n        \"Email\": \"jason@lyemac.co.za\",\n        \"Mobile\": \"0823405879\"\n    }\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/person/{{personId}}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"person",
+								"{{personId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Person By ID",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiSmFzb25EZUplc3V6IiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiQWRtaW4iLCJleHAiOjE2NTI5OTk2ODUsImlzcyI6Imh0dHBzOi8vbG9jYWxob3N0OjcxOTUiLCJhdWQiOiJodHRwczovL2xvY2FsaG9zdDo3MTk1In0.Z3CGOP75Cb_xm0XHQC_CoH7H5GGmSXc8MPbcWSurBO8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/person/2",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"person",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Authentication",
+			"item": [
+				{
+					"name": "Register Users",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\": \"Jason\",\r\n    \"lastName\": \"De Jesuz\",\r\n    \"userName\": \"JasonDeJesuz\",\r\n    \"password\": \"J@$0nDJ01!!!\",\r\n    \"email\": \"dejesuzjason@gmail.com\",\r\n    \"phoneNumber\": \"0823405879\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/auth",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"auth"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register Admin",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\": \"Jason\",\r\n    \"lastName\": \"De Jesuz\",\r\n    \"userName\": \"JasonDeJesuz\",\r\n    \"password\": \"J@$0nDJ01!!!\",\r\n    \"email\": \"jason@lyemac.co.za\",\r\n    \"phoneNumber\": \"0823405879\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/auth/register-admin",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"register-admin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userName\": \"JasonDeJesuz\",\r\n    \"password\": \"J@$0nDJ01!!!\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/auth/login",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Validate Token",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/auth/validate-token?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiSmFzb25CRGVKZXN1eiIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IkFkbWluIiwiZXhwIjoxNjUyNDc1MTA5LCJpc3MiOiJodHRwczovL2xvY2FsaG9zdDo3MTk1IiwiYXVkIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzE5NSJ9.T0rNxMuWpl58CgJ5GgMNtH-5InZ5j2-RGvQWOCWrfgs",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"validate-token"
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiSmFzb25CRGVKZXN1eiIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IkFkbWluIiwiZXhwIjoxNjUyNDc1MTA5LCJpc3MiOiJodHRwczovL2xvY2FsaG9zdDo3MTk1IiwiYXVkIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzE5NSJ9.T0rNxMuWpl58CgJ5GgMNtH-5InZ5j2-RGvQWOCWrfgs"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

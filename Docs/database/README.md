@@ -1,3 +1,5 @@
+![Bluegrass Logo](/Docs/github_assets/bluegrass_logo.jpeg)
+
 # Database Setup for People Directory
 
 ## Setup
@@ -87,3 +89,7 @@ Note that this time, EF detects that the database already exists. In addition, w
 - [MS SQL Server using Docker and Mac](https://setapp.com/how-to/install-sql-server)
 - [Docker Container Logs Tailing](https://www.papertrail.com/solution/tips/how-to-live-tail-docker-logs/)
 - [Quickstart](https://docs.docker.com/samples/aspnet-mssql-compose/)
+
+---
+
+<a href="https://guywithagopro.com"><img src="../github_assets/j_logo.png" alt="jason logo" width=200 /> </a>
