@@ -12,6 +12,35 @@
 
 ## 2. Docker MS SQL Server 2019
 
+You might find that having docker handle the database might be easier for you, in this case you can have the database running on your mac/windows using MS SQL Server Docker image.
+
+### Install the Tools
+First, you'll have to install the [Docker Desktop Application](https://www.docker.com/products/docker-desktop/)
+
+Next, we pull the MS SQL 2019 Docker Image
+
+```
+docker pull mcr.microsoft.com/mssql/server:2019-latest
+```
+
+Once the download is complete, you need to launch your downloaded SQL Server image in Docker. To do that, use this command in Terminal:
+
+```
+docker run --name [type in your desired SQL Server name here] -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=[type in your password for your database]' -e 'MSSQL_PID=[type in your Docker membership type]’ -p 1433:1433 -d mcr.microsoft.com/mssql/server:2019-latest
+```
+
+Here's an example
+
+```
+docker run --name SQLServer -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=12345OHdf%e' -e 'MSSQL_PID=Express’ -p 1433:1433 -d mcr.microsoft.com/mssql/server:2019-latest
+```
+
+You can then connect to the database using the following connectionString
+
+```
+Server=localhost;Database=Bluegrass;User Id=sa; Password=12345OHdf%e; TrustServerCertificate=True;
+```
+
 ## 3. In Memory
 
 ## Tech
@@ -54,4 +83,5 @@ dotnet ef database update
 Note that this time, EF detects that the database already exists. In addition, when our first migration was applied above, this fact was recorded in a special migrations history table in your database; this allows EF to automatically apply only the new migration.
 
 ## References
-- https://docs.microsoft.com/en-us/ef/core/managing-schemas/migrations/?tabs=dotnet-core-cli
+- [dotnet ef - migrations](https://docs.microsoft.com/en-us/ef/core/managing-schemas/migrations/?tabs=dotnet-core-cli)
+- [MS SQL Server using Docker and Mac](https://setapp.com/how-to/install-sql-server)

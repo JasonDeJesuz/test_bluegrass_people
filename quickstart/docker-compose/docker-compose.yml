@@ -1,0 +1,13 @@
+version: "3.9"
+services:
+  bluegrass:
+    build: ../../Bluegrass/Bluegrass/Dockerfile
+    ports:
+      - "8000:80"
+    # depends_on:
+    #   - db
+  # bluegrass-sql:
+  #   image: "mcr.microsoft.com/mssql/server:2019-latest"
+  #   environment:
+  #     SA_PASSWORD: "12345OHdf%e"
+  #     ACCEPT_EULA: "Y"
