@@ -4,9 +4,11 @@
 This directory contains a docker-compose setup that includes the services with all their supporting infrastructure and configuration to allow the Directory API services to be worked with locally.
 
 ## Quickstart Requirements
+- HomeBrew
 - Docker
 - Docker-Compose
 - JQ
+- coreutils 
 
 ## Installing Docker
 
@@ -29,7 +31,10 @@ Then:
 brew install jq
 ```
 
-### Windows
+##Installing CoreUtils
+```
+brew install coreutils
+```
 
 ## Cloning the repository
 ```
@@ -49,8 +54,14 @@ cd quickstart/docker-compose
 ```
 
 Start the local docker-compose based environment:
+### Windows
 ```
 ./run-quickstart.sh
+```
+
+### Mac
+```
+sudo sh run-quickstart.sh
 ```
 
 This will start the Bluegrass directory service

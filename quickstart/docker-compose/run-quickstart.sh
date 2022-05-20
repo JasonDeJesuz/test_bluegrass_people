@@ -25,7 +25,7 @@ wait_for_service () {
     SEARCH_PATTERN=$3
 
     echo "Giving ${SERVICE} ${TIMEOUT} seconds to start:"
-    timeout --signal=SIGINT $TIMEOUT ./wait-for-logline.sh $SERVICE   "${SEARCH_PATTERN}"
+    timeout --signal=SIGINT $TIMEOUT sh ./wait-for-logline.sh $SERVICE   "${SEARCH_PATTERN}"
     RESULT=$?
 
 
@@ -83,6 +83,19 @@ service_controlled_start () {
     fi
 }
 
+service_start () {
+    SERVICE=$1
+    TIMEOUT=$2
+    SEARCH_PATTERN=$3
+
+    echo 
+    echoBold "Starting ${SERVICE}:"
+    docker-compose up -d "${SERVICE}"
+    echoBold "${SERVICE} started."
+    echo
+    return 0
+}
+
 echo
 echoBold "CHECKING DEPENDENCIES"
 
@@ -137,15 +150,18 @@ echo
 echoBold "Making sure the quickstart is stopped."
 docker-compose down
 echoBold "Deleting files generated from templates."
-rm appsettings-templates/appsettings.docker.json || true
+rm appsettings/appsettings.docker.json || true
 
 echo
 echoBold "Bluegrass People Directory:"
 echo "Bluegrass People Directory is the core."
 echo "Has a database, and the core system."
 
-service_controlled_start 'bluegrass-sql' $TIME_TO_START 'database system is ready to accept connections'
-service_controlled_start 'bluegrass' $TIME_TO_START 'Now listening on\:'
+# service_controlled_start 'bluegrass-sql' $TIME_TO_START 'database system is ready to accept connections'
+# service_controlled_start 'bluegrass-app' $TIME_TO_START 'Now listening on\:'
+
+service_start 'bluegrass-sql' $TIME_TO_START 'database system is ready to accept connections'
+# service_start 'bluegrass-app' $TIME_TO_START 'Now listening on\:'
 
 # echo
 # echoBold "Testing Bluegrass API:"
@@ -158,6 +174,10 @@ service_controlled_start 'bluegrass' $TIME_TO_START 'Now listening on\:'
 echo
 echoBold "Forcing a build of the Bluegrass Service:"
 docker-compose build bluegrass-app
+
+echo
+echoBold "Starting the Bluegrass Service:"
+docker-compose up -d bluegrass-app
 
 echo 
 echoBold "Service listing:"
