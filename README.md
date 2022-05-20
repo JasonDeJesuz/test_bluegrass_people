@@ -51,20 +51,20 @@ You are required to create an Environment which contains the following global va
 | token | The token which is retrieved when logging in, this will be set automatically | |
 
 ## Getting Started
-### Docker 🐳
-```
-cd Bluegrass
-docker build .
-```
 
 ### dotnet
 The application will run migrations on startup, if the database connection is successful.
 ```
 cd Bluegrass
+```
+
+Before getting started, make sure the appsettings.json file contains the correct values.
+
+```
 dotnet run --project Bluegrass
 ```
 
-### QuickStart
+### QuickStart using Docker-Compose
 You can use the QuickStart section to quickly get the entire solution up and running.
 The Quickstart can be found [here](quickstart/docker-compose/README.md).
 
